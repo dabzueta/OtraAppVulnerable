@@ -23,7 +23,7 @@ pipeline{
                     
                     withSonarQubeEnv(credentialsId: 'sonarqubetoken') {
                       
-                        sh 'mvn clean package sonar:sonar'
+                        sh "${scannerHome}/bin/sonar-scanner"
                     }
                    }
                     
