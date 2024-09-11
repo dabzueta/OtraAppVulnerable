@@ -3,7 +3,7 @@ pipeline{
     
     stages {
         stage('Git Private Checkout'){
-            withCredentials([string(credentialsId: 'Jenkins-GithubApp', variable: 'GITHUB_TOKEN')])
+            //withCredentials([string(credentialsId: 'Jenkins-GithubApp', variable: 'GITHUB_TOKEN')])
             steps{
                 script{
                     git branch: 'main', url: 'https://github.com/dabzueta/VulnerableApp.git'
