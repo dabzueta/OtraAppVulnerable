@@ -2,10 +2,8 @@ pipeline{
     agent any 
     
     stages {
-        withCredentials([string(credentialsId: 'Jenkins-GithubApp', variable: 'GITHUB_TOKEN')]) {
-            stage('Git Private Checkout')
-        }
         stage('Git Private Checkout'){
+            withCredentials([string(credentialsId: 'Jenkins-GithubApp', variable: 'GITHUB_TOKEN')])
             steps{
                 script{
                     git branch: 'main', url: 'https://github.com/dabzueta/VulnerableApp.git'
