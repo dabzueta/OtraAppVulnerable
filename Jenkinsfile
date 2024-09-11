@@ -1,35 +1,23 @@
 pipeline{
-    
     agent any 
-    
     stages {
-        
         stage('Git Checkout'){
-            
             steps{
-                
                 script{
-                    
                     git branch: 'main', url: 'https://github.com/dabzueta/OtraAppVulnerable.git'
                 }
             }
         }
-
         stage('Static code analysis'){
-            
             steps{
-                
                 script{
-                    
-                    withSonarQubeEnv(credentialsId: 'sonarqubetoken') {
-                      
-                        sh "${scannerHome}/bin/sonar-scanner"
-                    }
-                   }
-                    
+                    scannerHome = tool 'sonar-scanner'
+                }
+                   
+                withSonarQubeEnv(credentialsId: 'sonarqubetoken') {
+                    sh "${scannerHome}/bin/sonar-scanner"
                 }
             }
-           
         }
-        
+    }
 }
